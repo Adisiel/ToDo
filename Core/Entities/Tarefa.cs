@@ -10,7 +10,7 @@ namespace Core.Entities
             Descricao = descricao;
             Prioridade = prioridade;
             Status = status;
-            DataEntrega = dataEntrega.Date;
+            DataEntrega = dataEntrega;
             CategoriaId = categoriaId;
         }
 

@@ -40,7 +40,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Tarefa?> ObterTarefaPorId(int id)
         {
-            var tarefa = await _context.Tarefas.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
+            var tarefa = await _context.Tarefas.Include(t => t.Categoria).AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
             return tarefa;
         }
     }

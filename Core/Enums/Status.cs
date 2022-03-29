@@ -2,7 +2,7 @@
 {
     public enum Status
     {
-        Pendente,
-        Finalizada
+        Pendente = 1,
+        Finalizada = 2
     }
 }

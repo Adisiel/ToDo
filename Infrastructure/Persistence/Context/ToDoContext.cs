@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Enums;
 using Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,7 @@ namespace Infrastructure.Persistence.Context
                 if (entry.State == EntityState.Added)
                 {
                     entry.Property("DataCriacao").CurrentValue = DateTime.Now.Date;
+                    entry.Property("Status").CurrentValue = Status.Pendente;
                 }
 
                 if (entry.State == EntityState.Modified)

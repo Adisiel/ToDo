@@ -2,6 +2,7 @@ using Application.Profiles;
 using Application.Services;
 using Application.Services.Interfaces;
 using Application.Validators.CategoriaValidators;
+using Application.Validators.TarefaValidators;
 using Core.Interfaces.Repositories;
 using FluentValidation.AspNetCore;
 using Infrastructure.Persistence.Context;
@@ -24,7 +25,9 @@ builder.Services.AddAutoMapper(typeof(TarefaProfile));
 
 builder.Services.AddControllers()
     .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<AddCategoriaDTOValidator>())
-    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UpdateCategoriaDTOValidator>());
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UpdateCategoriaDTOValidator>())
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<AddTarefaDTOValidator>())
+    .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<UpdateTarefaDTOValidator>());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
