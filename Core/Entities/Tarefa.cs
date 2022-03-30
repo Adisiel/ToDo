@@ -4,12 +4,11 @@ namespace Core.Entities
 {
     public class Tarefa
     {
-        public Tarefa(string titulo, string descricao, Prioridade prioridade, Status status, DateTime dataEntrega, int categoriaId)
+        public Tarefa(string titulo, string descricao, Prioridade prioridade, DateTime dataEntrega, int categoriaId)
         {
             Titulo = titulo;
             Descricao = descricao;
             Prioridade = prioridade;
-            Status = status;
             DataEntrega = dataEntrega;
             CategoriaId = categoriaId;
         }

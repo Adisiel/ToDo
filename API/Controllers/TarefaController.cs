@@ -14,7 +14,10 @@ namespace API.Controllers
         {
             _service = service;
         }
+
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Post([FromBody] AddTarefaDTO addTarefaDTO)
         {
             var detailsTarefaDTO = await _service.Add(addTarefaDTO);
@@ -23,6 +26,9 @@ namespace API.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Put([FromBody] UpdateTarefaDTO updateTarefaDTO)
         {
             if (!ExisteTarefa(updateTarefaDTO.Id).Result)
@@ -36,6 +42,8 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(int id)
         {
             if (!ExisteTarefa(id).Result)
@@ -49,6 +57,8 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get()
         {
             var tarefas = await _service.ObterTodasTarefas();
@@ -62,6 +72,8 @@ namespace API.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetById(int id)
         {
             var tarefa = await _service.ObterTarefaPorId(id);
@@ -74,7 +86,7 @@ namespace API.Controllers
             return Ok(tarefa);
         }
 
-        private async Task<bool> ExisteTarefa(int id)
+        private async Task<bool> ExisteTarefa([FromRoute] int id)
         {
             var tarefa = await _service.ObterTarefaPorId(id);
             return tarefa != null;
