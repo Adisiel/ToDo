@@ -17,9 +17,9 @@ namespace Application.Validators.TarefaValidators
 
             RuleFor(t => t.Descricao)
                 .NotEmpty()
-                    .WithMessage("Descrição da tarefa não pode ser vazio.")
+                    .WithMessage("Descrição da tarefa não pode ser vazia.")
                 .NotNull()
-                    .WithMessage("Descrição da tarefa não pode ser nulo.")
+                    .WithMessage("Descrição da tarefa não pode ser nula.")
                 .MaximumLength(100)
                     .WithMessage("Descrição da tarefa deve possuir no máximo 100 caracteres.");
 
@@ -31,11 +31,17 @@ namespace Application.Validators.TarefaValidators
 
             RuleFor(t => t.DataEntrega)
                 .NotEmpty()
-                    .WithMessage("Prioridade da tarefa não pode ser vazia.")
+                    .WithMessage("Data de Entrega da tarefa não pode ser vazia.")
                 .NotNull()
-                    .WithMessage("Prioridade da tarefa não pode ser nula.")
+                    .WithMessage("Data de Entrega da tarefa não pode ser nula.")
                 .GreaterThanOrEqualTo(DateTime.Now.Date)
                     .WithMessage("Data de entrega não pode ser menor que o dia atual.");
+
+            RuleFor(t => t.CategoriaId)
+                .NotEmpty()
+                    .WithMessage("Categoria da tarefa não pode ser vazia.")
+                .NotNull()
+                    .WithMessage("Categoria da tarefa não pode ser nula.");
         }
     }
 }

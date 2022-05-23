@@ -14,13 +14,13 @@ namespace Application.Profiles
                 .ForMember(tDTO => tDTO.DataCriacao, options => options.MapFrom(t => t.DataCriacao.Date))
                 .ForMember(tDTO => tDTO.DataEntrega, options => options.MapFrom(t => t.DataEntrega.Date));
 
-            CreateMap<DetailsTarefaDTO, Tarefa>();
+            CreateMap<AddTarefaDTO, Tarefa>()
+                .ForMember(t => t.DataEntrega, options => options.MapFrom(t => t.DataEntrega.Date));      
 
             CreateMap<UpdateTarefaDTO, Tarefa>()
                 .ForMember(tDTO => tDTO.DataEntrega, options => options.MapFrom(t => t.DataEntrega.Date));
 
-            CreateMap<AddTarefaDTO, Tarefa>()
-                .ForMember(tDTO => tDTO.DataEntrega, options => options.MapFrom(t => t.DataEntrega.Date));
+            CreateMap<DetailsTarefaDTO, Tarefa>();
         }
     }
 }

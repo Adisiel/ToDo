@@ -36,6 +36,12 @@ namespace Application.Validators.TarefaValidators
                     .WithMessage("Prioridade da tarefa não pode ser nula.")
                 .GreaterThanOrEqualTo(DateTime.Now.Date)
                     .WithMessage("Data de entrega não pode ser menor que o dia atual.");
+
+            RuleFor(t => t.CategoriaId)
+                .NotEmpty()
+                    .WithMessage("Categoria da tarefa não pode ser vazia.")
+                .NotNull()
+                    .WithMessage("Categoria da tarefa não pode ser nula.");
         }
     }
 }
